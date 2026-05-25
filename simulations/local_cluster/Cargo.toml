@@ -1,0 +1,56 @@
+# simulations/local_cluster/Cargo.toml
+
+[package]
+name = "local_cluster"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# -------------------------------------------------
+# Async Runtime
+# -------------------------------------------------
+
+tokio = { version = "1", features = ["full"] }
+
+# -------------------------------------------------
+# Serialization
+# -------------------------------------------------
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# -------------------------------------------------
+# Logging / Observability
+# -------------------------------------------------
+
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# -------------------------------------------------
+# Error Handling
+# -------------------------------------------------
+
+anyhow = "1"
+
+# -------------------------------------------------
+# Randomized Simulation
+# -------------------------------------------------
+
+rand = "0.8"
+
+# -------------------------------------------------
+# Internal Runtime Dependencies
+# -------------------------------------------------
+
+protocol = { path = "../../runtime/protocol" }
+
+fabric = { path = "../../runtime/fabric" }
+
+leadership = { path = "../../runtime/leadership" }
+
+scheduler = { path = "../../runtime/scheduler" }
+
+telemetry = { path = "../../runtime/telemetry" }
+
+node_agent = { path = "../../runtime/node_agent" }
