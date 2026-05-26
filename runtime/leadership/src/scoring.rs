@@ -1,6 +1,6 @@
 // runtime/leadership/src/scoring.rs
 
-use crate::node::Node;
+use node_agent::node::Node;
 
 use serde::{Deserialize, Serialize};
 
@@ -27,13 +27,13 @@ impl LeadershipScore {
         // Thermal Factor
         // Lower temperatures are better
         // -----------------------------
-        let thermal_factor = (100.0 - node.telemetry.cpu_temperature_c).clamp(0.0, 100.0);
+        let thermal_factor = (100.0 - node.telemetry.cpu_temperature_c).clamp(0.0_f32, 100.0_f32);
 
         // -----------------------------
         // CPU Factor
         // Lower CPU usage is better
         // -----------------------------
-        let cpu_factor = (100.0 - node.telemetry.cpu_usage).clamp(0.0, 100.0);
+        let cpu_factor = (100.0 - node.telemetry.cpu_usage).clamp(0.0_f32, 100.0_f32);
 
         // -----------------------------
         // Memory Factor

@@ -78,7 +78,7 @@ impl TelemetryAnalyzer {
         // -------------------------------------------------
 
         if let Some(cpu) = snapshot.metric("cpu_usage") {
-            if cpu.value >= 95.0 {
+            if cpu.numeric_value().unwrap_or(0.0) >= 95.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 
@@ -86,7 +86,7 @@ impl TelemetryAnalyzer {
 
                     severity: AnomalySeverity::Critical,
                 });
-            } else if cpu.value >= 80.0 {
+            } else if cpu.numeric_value().unwrap_or(0.0) >= 80.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 
@@ -102,7 +102,7 @@ impl TelemetryAnalyzer {
         // -------------------------------------------------
 
         if let Some(temp) = snapshot.metric("cpu_temperature") {
-            if temp.value >= 85.0 {
+            if temp.numeric_value().unwrap_or(0.0) >= 85.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 
@@ -110,7 +110,7 @@ impl TelemetryAnalyzer {
 
                     severity: AnomalySeverity::Critical,
                 });
-            } else if temp.value >= 70.0 {
+            } else if temp.numeric_value().unwrap_or(0.0) >= 70.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 
@@ -126,7 +126,7 @@ impl TelemetryAnalyzer {
         // -------------------------------------------------
 
         if let Some(memory) = snapshot.metric("available_memory") {
-            if memory.value <= 256.0 {
+            if memory.numeric_value().unwrap_or(0.0) <= 256.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 
@@ -134,7 +134,7 @@ impl TelemetryAnalyzer {
 
                     severity: AnomalySeverity::Critical,
                 });
-            } else if memory.value <= 512.0 {
+            } else if memory.numeric_value().unwrap_or(0.0) <= 512.0 {
                 anomalies.push(TelemetryAnomaly {
                     node_id: snapshot.node_id.clone(),
 

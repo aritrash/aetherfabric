@@ -5,24 +5,7 @@ mod queue;
 mod scheduler;
 mod task;
 
-// Temporary direct imports from node_agent.
-//
-// Later these should be moved into a shared
-// workspace crate such as:
-//
-// runtime/common/
-// runtime/core/
-// runtime/types/
-#[path = "../../node_agent/src/node.rs"]
-mod node;
-
-#[path = "../../node_agent/src/state.rs"]
-mod state;
-
-#[path = "../../node_agent/src/telemetry.rs"]
-mod telemetry;
-
-use node::Node;
+use node_agent::node::Node;
 
 use scheduler::Scheduler;
 use task::{Task, TaskPriority};

@@ -1,10 +1,11 @@
 // runtime/node_agent/src/state.rs
 
+use serde::{Deserialize, Serialize};
 use std::fmt;
 
 /// Represents the current operational state of a node
 /// inside the AetherFabric runtime.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum NodeStatus {
     Initializing,
     Active,

@@ -5,35 +5,11 @@ mod heartbeat;
 mod registry;
 mod sync;
 
-// -------------------------------------------------
-// Temporary Shared Imports
-//
-// Later these should become proper shared crates:
-//
-// runtime/common/
-// runtime/core/
-// runtime/types/
-// -------------------------------------------------
-
-#[path = "../../node_agent/src/node.rs"]
-mod node;
-
-#[path = "../../node_agent/src/state.rs"]
-mod state;
-
-#[path = "../../node_agent/src/telemetry.rs"]
-mod telemetry;
-
-#[path = "../../leadership/src/leader.rs"]
-mod leader;
-
-// -------------------------------------------------
-
 use fabric::Fabric;
 use heartbeat::Heartbeat;
 use sync::SyncEngine;
 
-use node::Node;
+use node_agent::node::Node;
 
 use tracing::{info, warn};
 

@@ -34,7 +34,7 @@ impl Telemetry {
         system.refresh_all();
 
         // Average CPU usage across all cores
-        let cpu_usage = system.global_cpu_usage();
+        let cpu_usage = system.global_cpu_info().cpu_usage();
 
         // Memory values from sysinfo are in bytes
         let memory_usage_mb = (system.used_memory() / 1024 / 1024) as u64;

@@ -123,7 +123,7 @@ impl TelemetryHistory {
 
         for snapshot in history {
             if let Some(metric) = snapshot.metric(metric_name) {
-                total += metric.value;
+                total += metric.numeric_value().unwrap_or(0.0);
                 count += 1;
             }
         }
@@ -157,7 +157,7 @@ impl TelemetryHistory {
 
         let last_metric = last.metric(metric_name)?;
 
-        Some(last_metric.value > first_metric.value)
+        Some(last_metric.numeric_value().unwrap_or(0.0) > first_metric.numeric_value().unwrap_or(0.0))
     }
 
     /// Emits telemetry history summary.

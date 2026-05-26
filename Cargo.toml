@@ -1,0 +1,11 @@
+[workspace]
+
+members = [
+    "runtime/node_agent",
+    "runtime/leadership",
+    "runtime/scheduler",
+    "runtime/fabric",
+    "runtime/protocol",
+    "runtime/telemetry",
+    "runtime/ui", "simulations/local_cluster",
+]

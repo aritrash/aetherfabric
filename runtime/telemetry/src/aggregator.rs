@@ -1,11 +1,8 @@
 // runtime/telemetry/src/aggregator.rs
 
-use crate::metric::TelemetryMetric;
 use crate::snapshot::TelemetrySnapshot;
-
 use std::collections::HashMap;
-
-use tracing::{info, warn};
+use tracing::info;
 
 /// Responsible for aggregating telemetry across:
 /// - nodes
@@ -59,7 +56,7 @@ impl TelemetryAggregator {
 
         for snapshot in self.snapshots.values() {
             if let Some(metric) = snapshot.metric("cpu_usage") {
-                total += metric.value;
+                total += metric.numeric_value().unwrap_or(0.0);
                 count += 1;
             }
         }
@@ -78,7 +75,7 @@ impl TelemetryAggregator {
 
         for snapshot in self.snapshots.values() {
             if let Some(metric) = snapshot.metric("cpu_temperature") {
-                total += metric.value;
+                total += metric.numeric_value().unwrap_or(0.0);
                 count += 1;
             }
         }
@@ -97,7 +94,7 @@ impl TelemetryAggregator {
             .filter_map(|(node_id, snapshot)| {
                 snapshot
                     .metric("cpu_temperature")
-                    .map(|metric| (node_id, metric.value))
+                    .map(|metric| (node_id, metric.numeric_value().unwrap_or(0.0)))
             })
             .max_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
     }
@@ -109,7 +106,7 @@ impl TelemetryAggregator {
             .filter_map(|(node_id, snapshot)| {
                 snapshot
                     .metric("cpu_usage")
-                    .map(|metric| (node_id, metric.value))
+                    .map(|metric| (node_id, metric.numeric_value().unwrap_or(0.0)))
             })
             .max_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
     }

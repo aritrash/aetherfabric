@@ -1,12 +1,7 @@
 // runtime/node_agent/src/main.rs
 
-mod node;
-mod runtime;
-mod state;
-mod telemetry;
-
 use anyhow::Result;
-use runtime::Runtime;
+use node_agent::runtime::Runtime;
 use tracing::{error, info};
 
 #[tokio::main]

@@ -1,7 +1,7 @@
 // runtime/leadership/src/election.rs
 
 use crate::leader::LeaderState;
-use crate::node::Node;
+use node_agent::node::Node;
 use crate::scoring::LeadershipScore;
 
 use std::time::{SystemTime, UNIX_EPOCH};

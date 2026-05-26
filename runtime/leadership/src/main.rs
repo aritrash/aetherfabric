@@ -1,28 +1,7 @@
 // runtime/leadership/src/main.rs
 
-mod election;
-mod leader;
-mod scoring;
-
-// Temporary direct imports from node_agent.
-//
-// Later these should become shared workspace crates
-// under something like:
-//
-// runtime/common/
-// runtime/core/
-// runtime/types/
-#[path = "../../node_agent/src/node.rs"]
-mod node;
-
-#[path = "../../node_agent/src/state.rs"]
-mod state;
-
-#[path = "../../node_agent/src/telemetry.rs"]
-mod telemetry;
-
-use election::ElectionEngine;
-use node::Node;
+use leadership::election::ElectionEngine;
+use node_agent::node::Node;
 
 use tracing::info;
 
