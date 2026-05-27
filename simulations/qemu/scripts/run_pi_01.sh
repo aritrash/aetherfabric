@@ -4,11 +4,12 @@ qemu-system-aarch64 \
     -machine virt \
     -cpu cortex-a72 \
     -smp 4 \
-    -m 4096 \
+    -m 2048 \
     -bios ../firmware/QEMU_EFI.fd \
-    -drive if=virtio,file=../nodes/pi-01.qcow2,format=qcow2 \
-    -drive file=../base/ubuntu-26.04-live-server-arm64.iso,media=cdrom \
-    -boot d \
+    -device VGA \
+    -device qemu-xhci \
+    -device usb-kbd \
+    -drive if=none,file=../nodes/pi-01.qcow2,id=hd0,format=qcow2 \
+    -device virtio-blk-pci,drive=hd0 \
     -netdev user,id=net0,hostfwd=tcp::2221-:22 \
-    -device virtio-net-pci,netdev=net0 \
-    -nographic
+    -device virtio-net-pci,netdev=net0

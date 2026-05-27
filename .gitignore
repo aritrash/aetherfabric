@@ -8,3 +8,4 @@ Cargo.lock
 *.xlsx
 *.pdf
 simulations/qemu/base/
+simulations/qemu/nodes/
