@@ -10,5 +10,7 @@ qemu-system-aarch64 \
     -device virtio-blk-pci,drive=hd0 \
     -netdev user,id=net0,hostfwd=tcp::2222-:22 \
     -device virtio-net-pci,netdev=net0 \
+    -netdev socket,id=cluster1,connect=127.0.0.1:12345 \
+    -device virtio-net-pci,netdev=cluster1 \
     -serial mon:stdio \
     -nographic

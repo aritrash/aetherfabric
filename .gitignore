@@ -7,5 +7,6 @@ Cargo.lock
 .idea/
 *.xlsx
 *.pdf
+*.qcow2
 simulations/qemu/base/
 simulations/qemu/nodes/
