@@ -8,11 +8,9 @@ qemu-system-aarch64 \
     -bios ../firmware/QEMU_EFI.fd \
     -drive if=none,file=../nodes/pi-01.qcow2,id=hd0,format=qcow2 \
     -device virtio-blk-pci,drive=hd0 \
-    -netdev user,id=net0,hostfwd=tcp::2221-:22 \
-    -device virtio-net-pci,netdev=net0 \
-    -netdev socket,id=cluster1,listen=:12345 \
-    -device virtio-net-pci,netdev=cluster1 \
-    -netdev socket,id=cluster2,listen=:12346 \
-    -device virtio-net-pci,netdev=cluster2 \
+    \
+    -netdev user,id=net0,hostfwd=tcp::2221-:22,hostfwd=tcp::7001-:7001  \
+    -device virtio-net-pci,netdev=net0,mac=52:54:00:12:34:11 \
+    \
     -serial mon:stdio \
     -nographic
